@@ -12,6 +12,6 @@ export class CarreraEntity {
   @Column()
   descripcion: string;
 
-  @OneToMany(() => PersonaEntity, (persona) => persona.fk_carrera)
-  fk_persona: PersonaEntity[];
+  @OneToMany(() => PersonaEntity, (persona) => persona.carrera)
+  persona: PersonaEntity[];
 }

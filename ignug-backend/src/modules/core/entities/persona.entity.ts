@@ -27,6 +27,6 @@ export class PersonaEntity {
   @Column()
   telefono: number;
 
-  @ManyToOne(() => CarreraEntity, (carrera) => carrera.fk_persona)
-  fk_carrera: CarreraEntity;
+  @ManyToOne(() => CarreraEntity, (carrera) => carrera.persona)
+  carrera: CarreraEntity;
 }

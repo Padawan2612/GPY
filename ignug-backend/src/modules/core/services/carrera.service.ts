@@ -9,20 +9,21 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { RepositoryEnum } from '@shared/enums';
 import { ServiceResponseHttpModel } from '@shared/models';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
+import { PersonaService } from '@core/services';
 
 @Injectable()
 export class CarreraService {
   constructor(
     @Inject(RepositoryEnum.CARRERA_REPOSITORY)
     private carreraRepository: Repository<CarreraEntity>,
+   
   ) {}
 
-  async create(
-    createCarreraDto: CreateCarreraDto,
-  ): Promise<ServiceResponseHttpModel> {
-    const carreraNueva = await this.carreraRepository.create(createCarreraDto);
+  async create(payload: CreateCarreraDto): Promise<ServiceResponseHttpModel> {
+    const carreraNueva = await this.carreraRepository.create(payload);
+
     const carreraCreada = await this.carreraRepository.save(carreraNueva);
-    //carreraNueva.fk_persona=
+
     return { data: carreraCreada };
   }
 
@@ -36,7 +37,7 @@ export class CarreraService {
 
     //All
     const data = await this.carreraRepository.findAndCount({
-      relations: ['institution', 'modality', 'state', 'type'],
+      relations: ['persona'],
     });
 
     return { pagination: { totalItems: data[1], limit: 10 }, data: data[0] };
@@ -44,7 +45,7 @@ export class CarreraService {
 
   async findOne(id: number): Promise<any> {
     const career = await this.carreraRepository.findOne({
-      relations: ['fk_persona'],
+      relations: ['persona'],
       where: {
         id,
       },
@@ -75,9 +76,7 @@ export class CarreraService {
     const institutionDeleted = await this.carreraRepository.softDelete(id);
     return { data: institutionDeleted };
   }
-  async removeAll(
-    payload: CarreraEntity[],
-  ): Promise<ServiceResponseHttpModel> {
+  async removeAll(payload: CarreraEntity[]): Promise<ServiceResponseHttpModel> {
     const institutionsDeleted = await this.carreraRepository.softRemove(
       payload,
     );
@@ -103,7 +102,7 @@ export class CarreraService {
     }
 
     const response = await this.carreraRepository.findAndCount({
-      relations: ['institution', 'modality', 'state', 'type'],
+      relations: ['persona'],
       where,
       take: limit,
       skip: PaginationDto.getOffset(limit, page),

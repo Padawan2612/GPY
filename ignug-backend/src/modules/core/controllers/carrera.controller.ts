@@ -1,4 +1,4 @@
-import { CreateCarreraDto, UpdateCarreraDto } from '@core/dto';
+import { CreateCarreraDto, FilterCarreraDto, UpdateCarreraDto } from '@core/dto';
 import { CarreraService } from '@core/services';
 import {
   Controller,
@@ -8,6 +8,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { CarreraEntity } from '../entities/carrera.entity';
 
@@ -21,8 +22,8 @@ export class CarreraController {
   }
 
   @Get()
-  async findAll() {
-    return await this.carreraService.findAll();
+  async findAll(@Query() params: FilterCarreraDto) {
+    return await this.carreraService.findAll(params);
   }
 
   @Get(':id')
@@ -43,7 +44,7 @@ export class CarreraController {
     return await this.carreraService.remove(id);
   }
 
-  @Delete(':id')
+  @Patch('remove-all')
   async removeAll(@Body() payload: CarreraEntity[]) {
     return await this.carreraService.removeAll(payload);
   }

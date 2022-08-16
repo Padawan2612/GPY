@@ -1,10 +1,14 @@
 import { IsOptional, MinLength } from 'class-validator';
+
 import { PaginationDto } from '../pagination/pagination.dto';
 
-export class FilterCarreraDto extends PaginationDto {
+export class FilterPersonaDto extends PaginationDto {
   @IsOptional()
-  nombreCarrera: string;
+  nombre: string;
 
   @IsOptional()
-  descripcion: string;
+  apellido: string;
+
+  @IsOptional()
+  password: string;
 }

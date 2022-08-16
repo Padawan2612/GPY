@@ -5,4 +5,7 @@ export * from './catalogues/filter-catalogue.dto';
 export * from './pagination/pagination.dto';
 export * from './carrera/create-carrera.dto';
 export * from './carrera/update-carrera.dto';
-export * from './carrera/filter-carrera.dto'
+export * from './carrera/filter-carrera.dto';
+export * from './persona/create-persona.dto';
+export * from './persona/update-persona.dto';
+export * from './persona/filter-persona.dto'
