@@ -8,4 +8,7 @@ export * from './carrera/update-carrera.dto';
 export * from './carrera/filter-carrera.dto';
 export * from './persona/create-persona.dto';
 export * from './persona/update-persona.dto';
-export * from './persona/filter-persona.dto'
+export * from './persona/filter-persona.dto';
+export * from './rol/create-rol.dto';
+export * from './rol/update-rol.dto';
+export * from './rol/filter-rol.dto'
