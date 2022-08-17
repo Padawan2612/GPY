@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, MinLength } from 'class-validator';
+import { IsBoolean, IsNotEmpty, Min, MinLength } from 'class-validator';
 import { TutorAcademicoEntity } from '../../entities/tutor_academico.entity';
 
 export class CreateTutorAcademicoDto {
@@ -20,6 +20,6 @@ export class CreateTutorAcademicoDto {
   
 
   @IsNotEmpty({ message: 'Debe ser objeto del campo carrera' })
-  carrera: TutorAcademicoEntity;
+  persona: TutorAcademicoEntity;
 }
 

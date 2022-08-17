@@ -9,7 +9,7 @@ import { Inject, Injectable, NotFoundException  } from '@nestjs/common';
 import { RepositoryEnum } from '@shared/enums';
 import { ServiceResponseHttpModel } from '@shared/models';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
-import { TutorAcademicoService } from './tutor_academico.service';
+
 
 
 @Injectable()
@@ -17,19 +17,27 @@ export class TutorAcademicoService {
   constructor(
     @Inject(RepositoryEnum.TUTOR_ACADEMICO_REPOSITORY)
     private TutorAcademicoRepository: Repository<TutorAcademicoEntity>,
-    private TutorAcademicoService: TutorAcademicoService
+    private TutorAcademicoService: TutorAcademicoService,
   ) {}
 
   async create(
     payload: CreateTutorAcademicoDto,
   ): Promise<ServiceResponseHttpModel> {
-    const TutorAcademicoNueva = await this.TutorAcademicoRepository.create(payload);
-    TutorAcademicoNueva.persona = await this.TutorAcademicoService.findOne(payload.persona.id);
-    const TutorAcademicoCreada = await this.TutorAcademicoRepository.save(TutorAcademicoNueva);
+    const TutorAcademicoNueva = await this.TutorAcademicoRepository.create(
+      payload,
+    );
+    TutorAcademicoNueva.persona = await this.TutorAcademicoService.findOne(
+      payload.persona.id,
+    );
+    const TutorAcademicoCreada = await this.TutorAcademicoRepository.save(
+      TutorAcademicoNueva,
+    );
     return { data: TutorAcademicoCreada };
   }
 
-  async findAll(params?: FilterTutorAcademicoDto): Promise<ServiceResponseHttpModel> {
+  async findAll(
+    params?: FilterTutorAcademicoDto,
+  ): Promise<ServiceResponseHttpModel> {
     //Pagination & Filter by search
 
     if (params.limit > 0 && params.page >= 0) {
@@ -64,25 +72,31 @@ export class TutorAcademicoService {
     id: number,
     payload: UpdateTutorAcademicoDto,
   ): Promise<ServiceResponseHttpModel> {
-    const rol = await this.TutorAcademicoRepository.findOneBy({ id });
-    if (!rol) {
+    const TutorAcademico = await this.TutorAcademicoRepository.findOneBy({ id });
+    if (!TutorAcademico) {
       throw new NotFoundException(`La persona con id:  ${id} no se encontro`);
     }
     TutorAcademico.persona = await this.TutorAcademicoService.findOne(
-       payload.persona.id,
-     );
-    this.TutorAcademicoRepository.merge(rol, payload);
-    const TutorAcademicoUpdated = await this.TutorAcademicoRepository.save(rol);
+      payload.persona.id,
+    );
+    this.TutorAcademicoRepository.merge(TutorAcademico, payload);
+    const TutorAcademicoUpdated = await this.TutorAcademicoRepository.save(
+      TutorAcademico,
+    );
     return { data: TutorAcademicoUpdated };
   }
   async remove(id: number): Promise<ServiceResponseHttpModel> {
     const institution = await this.TutorAcademicoRepository.findOneBy({ id });
     if (!institution) throw new NotFoundException('Institution not found');
 
-    const institutionDeleted = await this.TutorAcademicoRepository.softDelete(id);
+    const institutionDeleted = await this.TutorAcademicoRepository.softDelete(
+      id,
+    );
     return { data: institutionDeleted };
   }
-  async removeAll(payload: TutorAcademicoEntity[]): Promise<ServiceResponseHttpModel> {
+  async removeAll(
+    payload: TutorAcademicoEntity[],
+  ): Promise<ServiceResponseHttpModel> {
     const institutionsDeleted = await this.TutorAcademicoRepository.softRemove(
       payload,
     );
@@ -103,7 +117,10 @@ export class TutorAcademicoService {
       search = search.trim();
       page = 0;
       where = [];
-      where.push({ nombre: ILike(`%${search}%`) });
+      where.push({ titulo: ILike(`%${search}%`) });
+      where.push({ especialidad: ILike(`%${search}%`) });
+      
+      
     }
 
     const response = await this.TutorAcademicoRepository.findAndCount({
