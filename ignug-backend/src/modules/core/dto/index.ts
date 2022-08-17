@@ -8,4 +8,7 @@ export * from './carrera/update-carrera.dto';
 export * from './carrera/filter-carrera.dto';
 export * from './persona/create-persona.dto';
 export * from './persona/update-persona.dto';
-export * from './persona/filter-persona.dto'
+export * from './persona/filter-persona.dto';
+export * from './tutor_academico/create-tutor_academico.dto';
+export * from './tutor_academico/update-tutor_academico.dto';
+export * from './tutor_academico/filter-tutor_academico.dto'

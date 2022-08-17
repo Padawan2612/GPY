@@ -11,10 +11,12 @@ import {
 } from '@core/services';
 import { DatabaseModule } from '@database';
 import { coreProviders } from '@core/providers';
+import { TutorAcadenicoModule } from './tutor_acadenico/tutor_acadenico.module';
+import { TutorAcademicoModule } from './tutor_academico/tutor_academico.module';
 
 @Global()
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, TutorAcadenicoModule, TutorAcademicoModule],
   controllers: [CataloguesController, CarreraController, PersonaController],
   providers: [
     ...coreProviders,
