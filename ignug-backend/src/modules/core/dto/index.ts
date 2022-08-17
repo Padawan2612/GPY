@@ -8,4 +8,11 @@ export * from './carrera/update-carrera.dto';
 export * from './carrera/filter-carrera.dto';
 export * from './persona/create-persona.dto';
 export * from './persona/update-persona.dto';
-export * from './persona/filter-persona.dto'
+export * from './persona/filter-persona.dto';
+export * from './catalogo/create-catalogo.dto';
+export * from './catalogo/update-catalogo.dto';
+export * from './catalogo/filter-catalogo.dto';
+export * from './portafolio/create-portafolio.dto';
+export * from './portafolio/update-portafolio.dto';
+export * from './portafolio/filter-portafolio.dto';
+

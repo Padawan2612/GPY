@@ -54,7 +54,7 @@ export class CarreraService {
     if (!career) {
       throw new NotFoundException(`La carrera con id:  ${id} no se encontro`);
     }
-    return { data: career };
+    throw new NotFoundException(`La carrera con id:  ${id} no se encontro`);
   }
 
   async update(
