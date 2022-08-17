@@ -14,20 +14,16 @@ import {
 } from '@core/services';
 import { DatabaseModule } from '@database';
 import { coreProviders } from '@core/providers';
-import { TutorAcadenicoModule } from './tutor_acadenico/tutor_acadenico.module';
-import { TutorAcademicoModule } from './tutor_academico/tutor_academico.module';
+
 
 @Global()
 @Module({
-<<<<<<< HEAD
-  imports: [DatabaseModule, TutorAcadenicoModule, TutorAcademicoModule],
+
+  imports: [DatabaseModule, ],
   controllers: [CataloguesController, CarreraController, PersonaController],
-=======
-  imports: [DatabaseModule,],
-  controllers: [CataloguesController, CarreraController, PersonaController, RolController],
+
  
 
->>>>>>> f7a5ef9cbe7654ec7e100a491dea60cbbe2a7d39
   providers: [
     ...coreProviders,
     CataloguesService,
