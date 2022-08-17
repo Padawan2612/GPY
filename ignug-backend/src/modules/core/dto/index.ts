@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export * from './catalogues/catalogue.dto';
 export * from './catalogues/create-catalogue.dto';
 export * from './catalogues/update-catalogue.dto';
@@ -9,6 +10,11 @@ export * from './carrera/filter-carrera.dto';
 export * from './persona/create-persona.dto';
 export * from './persona/update-persona.dto';
 export * from './persona/filter-persona.dto';
+export * from './documento/create-documento.dto';
+export * from './documento/update-documento.dto';
+export * from './detalle-portafolio/create-detalle-portafolio.dto';
+export * from './detalle-portafolio/update-detalle-portafolio.dto';
 export * from './rol/create-rol.dto';
 export * from './rol/update-rol.dto';
 export * from './rol/filter-rol.dto'
+

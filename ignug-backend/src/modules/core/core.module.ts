@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Global, Module } from '@nestjs/common';
 import {
   CarreraController,
@@ -14,12 +15,12 @@ import {
 import { DatabaseModule } from '@database';
 import { coreProviders } from '@core/providers';
 
-
-
 @Global()
 @Module({
   imports: [DatabaseModule,],
   controllers: [CataloguesController, CarreraController, PersonaController, RolController],
+ 
+
   providers: [
     ...coreProviders,
     CataloguesService,
