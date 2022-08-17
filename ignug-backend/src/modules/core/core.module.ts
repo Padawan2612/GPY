@@ -3,33 +3,36 @@ import {
   CarreraController,
   CataloguesController,
   PersonaController,
+  RolController,
 } from '@core/controllers';
 import {
   CarreraService,
   CataloguesService,
   PersonaService,
+  RolService,
 } from '@core/services';
 import { DatabaseModule } from '@database';
 import { coreProviders } from '@core/providers';
-import { RolNoSpecModule } from './rol--no-spec/rol--no-spec.module';
-import { RolModule } from './rol/rol.module';
+
 
 
 @Global()
 @Module({
-  imports: [DatabaseModule, RolNoSpecModule, RolModule],
-  controllers: [CataloguesController, CarreraController, PersonaController],
+  imports: [DatabaseModule,],
+  controllers: [CataloguesController, CarreraController, PersonaController, RolController],
   providers: [
     ...coreProviders,
     CataloguesService,
     CarreraService,
     PersonaService,
+    RolService
   ],
   exports: [
     ...coreProviders,
     CataloguesService,
     CarreraService,
     PersonaService,
+    RolService
   ],
 })
 export class CoreModule {}

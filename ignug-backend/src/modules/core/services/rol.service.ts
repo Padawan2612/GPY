@@ -4,12 +4,12 @@ import {
   PaginationDto,
   UpdateRolDto,
 } from '@core/dto';
-import { RolEntity } from '../entities/rol.entity';
+import { RolEntity } from '@core/entities';
 import { Inject, Injectable, NotFoundException  } from '@nestjs/common';
 import { RepositoryEnum } from '@shared/enums';
 import { ServiceResponseHttpModel } from '@shared/models';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
-import { PersonaService } from './persona.service';
+import { PersonaService } from '@core/services';
 
 
 @Injectable()
