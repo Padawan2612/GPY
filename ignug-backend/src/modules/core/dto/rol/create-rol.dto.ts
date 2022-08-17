@@ -13,5 +13,5 @@ export class CreateRolDto {
     estado: boolean;
 
     @IsNotEmpty({ message: 'Debe ser objeto del campo persona' })
-    persona: PersonaEntity;
+    persona: PersonaEntity[];
 }
