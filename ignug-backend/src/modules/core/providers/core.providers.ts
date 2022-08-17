@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { DataSource } from 'typeorm';
 import { CatalogueEntity } from '@core/entities';
 import { CarreraEntity, PersonaEntity } from '@core/entities';

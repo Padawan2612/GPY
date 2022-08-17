@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { IsOptional, IsPositive, IsString, Min } from 'class-validator';
 
 export class PaginationDto {
