@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   CreatePersonaDto,
   FilterPersonaDto,
@@ -15,7 +16,7 @@ import { CarreraService } from '@core/services';
 export class PersonaService {
   constructor(
     @Inject(RepositoryEnum.PERSONA_REPOSITORY)
-    private personaRepository: Repository<PersonaEntity>,
+    private personaRepository: Repository<PersonaEntity>, 
     private carreraService: CarreraService
   ) {}
 

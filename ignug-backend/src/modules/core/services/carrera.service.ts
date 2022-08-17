@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   CreateCarreraDto,
   FilterCarreraDto,
@@ -9,7 +10,6 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { RepositoryEnum } from '@shared/enums';
 import { ServiceResponseHttpModel } from '@shared/models';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
-import { PersonaService } from '@core/services';
 
 @Injectable()
 export class CarreraService {
@@ -69,6 +69,8 @@ export class CarreraService {
     const careerUpdated = await this.carreraRepository.save(career);
     return { data: careerUpdated };
   }
+
+  
   async remove(id: number): Promise<ServiceResponseHttpModel> {
     const institution = await this.carreraRepository.findOneBy({ id });
     if (!institution) throw new NotFoundException('Institution not found');

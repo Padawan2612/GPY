@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export * from './catalogues/catalogue.dto';
 export * from './catalogues/create-catalogue.dto';
 export * from './catalogues/update-catalogue.dto';
@@ -15,4 +16,14 @@ export * from './catalogo/filter-catalogo.dto';
 export * from './portafolio/create-portafolio.dto';
 export * from './portafolio/update-portafolio.dto';
 export * from './portafolio/filter-portafolio.dto';
+export * from './tutor_academico/create-tutor_academico.dto';
+export * from './tutor_academico/update-tutor_academico.dto';
+export * from './tutor_academico/filter-tutor_academico.dto'
+export * from './documento/create-documento.dto';
+export * from './documento/update-documento.dto';
+export * from './detalle-portafolio/create-detalle-portafolio.dto';
+export * from './detalle-portafolio/update-detalle-portafolio.dto';
+export * from './rol/create-rol.dto';
+export * from './rol/update-rol.dto';
+export * from './rol/filter-rol.dto'
 

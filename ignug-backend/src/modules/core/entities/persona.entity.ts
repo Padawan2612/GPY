@@ -1,5 +1,8 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+/* eslint-disable prettier/prettier */
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { CarreraEntity } from './carrera.entity';
+import { RolEntity } from './rol.entity';
+import { TutorAcademicoEntity } from './tutor_academico.entity';
 
 @Entity({ name: 'persona' })
 export class PersonaEntity {
@@ -29,4 +32,11 @@ export class PersonaEntity {
 
   @ManyToOne(() => CarreraEntity, (carrera) => carrera.persona)
   carrera: CarreraEntity;
+
+  @ManyToOne(() => CarreraEntity, (tutor) => tutor.persona)
+  tutor: TutorAcademicoEntity;
+
+  @ManyToMany(() => RolEntity, (rol) => rol.persona)
+  @JoinColumn({ name: 'rol_id' })
+  rol: RolEntity[];
 }
