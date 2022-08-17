@@ -12,6 +12,7 @@ import {
 import { DatabaseModule } from '@database';
 import { coreProviders } from '@core/providers';
 
+
 @Global()
 @Module({
   imports: [DatabaseModule],
