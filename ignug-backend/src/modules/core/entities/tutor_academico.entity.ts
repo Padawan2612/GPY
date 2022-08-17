@@ -15,7 +15,7 @@ export class TutorAcademicoEntity{
   @Column()
   direccion: string;
 
-  @ManyToOne(() => PersonaEntity, (persona) => persona.tutoracademico)
+ // @ManyToOne(() => PersonaEntity, (persona) => persona.tutoracademico)
   persona: PersonaEntity;
 }
 
