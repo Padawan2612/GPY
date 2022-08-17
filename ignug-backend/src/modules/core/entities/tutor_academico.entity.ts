@@ -2,11 +2,10 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { PersonaEntity } from './persona.entity';
 
 @Entity({ name: 'tutoracademico' })
-export class TutorAcademicoEntity{}
-@PrimaryGeneratedColumn({})
+export class TutorAcademicoEntity{
+  @PrimaryGeneratedColumn({})
   id: number;
-
-
+  
   @Column()
   titulo: string;
 
@@ -19,3 +18,7 @@ export class TutorAcademicoEntity{}
   @ManyToOne(() => PersonaEntity, (persona) => persona.tutoracademico)
   persona: PersonaEntity;
 }
+
+
+
+ 
