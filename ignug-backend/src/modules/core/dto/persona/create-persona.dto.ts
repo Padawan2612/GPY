@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { CarreraEntity } from '@core/entities';
 import { IsBoolean, IsNotEmpty, Min, MinLength } from 'class-validator';
 
