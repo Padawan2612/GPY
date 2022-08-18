@@ -18,6 +18,8 @@ export class TutorAcademicoEntity{
 
   @ManyToOne(() => PersonaEntity, (persona) => persona.tutor)
 
+
+
  // @ManyToOne(() => PersonaEntity, (persona) => persona.tutoracademico)
   persona: PersonaEntity;
 }
