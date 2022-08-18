@@ -8,4 +8,3 @@ export * from './tutor_academico.service';
 export * from './documento.service';
 export * from './detalle-portafolio.service';
 export * from './rol.service';
-

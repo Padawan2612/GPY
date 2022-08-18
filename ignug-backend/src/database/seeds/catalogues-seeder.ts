@@ -5,10 +5,7 @@ import { CreateCatalogueDto } from '@core/dto';
 
 @Injectable()
 export class CataloguesSeeder {
-  constructor(private catalogueService: CataloguesService) { }
+  constructor(private catalogueService: CataloguesService) {}
 
-  run() {
-   
-  }
-
+  run() {}
 }

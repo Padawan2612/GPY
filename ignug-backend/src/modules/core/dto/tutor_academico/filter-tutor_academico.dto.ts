@@ -9,5 +9,4 @@ export class FilterTutorAcademicoDto extends PaginationDto {
 
   @IsOptional()
   especialidad: string;
-
 }

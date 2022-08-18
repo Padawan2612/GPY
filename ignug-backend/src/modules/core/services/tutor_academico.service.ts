@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   CreateTutorAcademicoDto,
   FilterTutorAcademicoDto,
@@ -5,12 +6,10 @@ import {
   UpdateTutorAcademicoDto,
 } from '@core/dto';
 import { TutorAcademicoEntity } from '../entities/tutor_academico.entity';
-import { Inject, Injectable, NotFoundException  } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { RepositoryEnum } from '@shared/enums';
 import { ServiceResponseHttpModel } from '@shared/models';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
-
-
 
 @Injectable()
 export class TutorAcademicoService {
@@ -72,7 +71,9 @@ export class TutorAcademicoService {
     id: number,
     payload: UpdateTutorAcademicoDto,
   ): Promise<ServiceResponseHttpModel> {
-    const TutorAcademico = await this.TutorAcademicoRepository.findOneBy({ id });
+    const TutorAcademico = await this.TutorAcademicoRepository.findOneBy({
+      id,
+    });
     if (!TutorAcademico) {
       throw new NotFoundException(`La persona con id:  ${id} no se encontro`);
     }
@@ -119,8 +120,6 @@ export class TutorAcademicoService {
       where = [];
       where.push({ titulo: ILike(`%${search}%`) });
       where.push({ especialidad: ILike(`%${search}%`) });
-      
-      
     }
 
     const response = await this.TutorAcademicoRepository.findAndCount({

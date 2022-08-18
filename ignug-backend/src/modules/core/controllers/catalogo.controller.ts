@@ -1,12 +1,17 @@
-import { CreateCatalogoDto, FilterCatalogoDto, UpdateCatalogoDto } from '@core/dto';
+/* eslint-disable prettier/prettier */
+import {
+  CreateCatalogoDto,
+  FilterCatalogoDto,
+  UpdateCatalogoDto,
+} from '@core/dto';
 import { CatalogoService } from '@core/services';
-import { 
-  Controller, 
-  Get, 
-  Post, 
-  Body, 
-  Patch, 
-  Param, 
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
   Delete,
   Query,
 } from '@nestjs/common';

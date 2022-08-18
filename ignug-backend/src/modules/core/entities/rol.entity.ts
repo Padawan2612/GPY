@@ -3,6 +3,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -20,6 +21,14 @@ export class RolEntity {
   estado: boolean;
 
   @ManyToMany(() => PersonaEntity, (persona) => persona.rol)
-  @JoinColumn({ name: 'persona_id' })
+  @JoinTable({
+    name: 'persona_rol',
+    joinColumn: {
+      name: 'rol_id',
+    },
+    inverseJoinColumn: {
+      name: 'persona_id',
+    },
+  })
   persona: PersonaEntity[];
 }

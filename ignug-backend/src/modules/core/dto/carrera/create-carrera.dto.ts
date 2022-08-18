@@ -2,7 +2,6 @@
 import { PersonaEntity } from '@core/entities';
 import { IsNotEmpty, MinLength } from 'class-validator';
 
-
 export class CreateCarreraDto {
   @MinLength(10, {
     message: 'El campo carrera minimo debe tenr diez caracteres',

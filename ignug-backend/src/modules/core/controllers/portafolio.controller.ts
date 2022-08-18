@@ -1,7 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query} from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { PortafolioService } from '@core/services';
 
-import { UpdatePortafolioDto, CreatePortafolioDto, FilterPortafolioDto } from '@core/dto';
+import {
+  UpdatePortafolioDto,
+  CreatePortafolioDto,
+  FilterPortafolioDto,
+} from '@core/dto';
 import { PortafolioEntity } from '@core/entities';
 
 @Controller('portafolio')
@@ -14,7 +27,7 @@ export class PortafolioController {
   }
 
   @Get()
-  async findAll(@Query() params:FilterPortafolioDto) {
+  async findAll(@Query() params: FilterPortafolioDto) {
     return await this.portafolioService.findAll(params);
   }
 
@@ -27,7 +40,7 @@ export class PortafolioController {
   async update(
     @Param('id') id: string,
     @Body() updatePortafolioDto: UpdatePortafolioDto,
-    ) {
+  ) {
     return await this.portafolioService.update(+id, updatePortafolioDto);
   }
 
@@ -40,5 +53,4 @@ export class PortafolioController {
   async removeAll(@Body() payload: PortafolioEntity[]) {
     return await this.portafolioService.removeAll(payload);
   }
-
 }

@@ -5,7 +5,7 @@ import {
   UpdatePortafolioDto,
 } from '@core/dto';
 import { PortafolioEntity } from '@core/entities';
-import { Inject,Injectable,NotFoundException  } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { RepositoryEnum } from '@shared/enums';
 import { ServiceResponseHttpModel } from '@shared/models';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
@@ -16,21 +16,27 @@ export class PortafolioService {
   constructor(
     @Inject(RepositoryEnum.PORTAFOLIO_REPOSITORY)
     private portafolioRepository: Repository<PortafolioEntity>,
-    private catalogoService: CatalogoService
+    private catalogoService: CatalogoService,
   ) {}
 
   async create(
     payload: CreatePortafolioDto,
   ): Promise<ServiceResponseHttpModel> {
     const portafolioNueva = await this.portafolioRepository.create(payload);
-    portafolioNueva.fkCatalogo = await this.catalogoService.findOne(payload.fkCatalogo.id);
-    const portafolioCreada = await this.portafolioRepository.save(portafolioNueva);
+    portafolioNueva.fkCatalogo = await this.catalogoService.findOne(
+      payload.fkCatalogo.id,
+    );
+    const portafolioCreada = await this.portafolioRepository.save(
+      portafolioNueva,
+    );
     return { data: portafolioCreada };
   }
 
-  async findAll(params?: FilterPortafolioDto): Promise<ServiceResponseHttpModel> {
+  async findAll(
+    params?: FilterPortafolioDto,
+  ): Promise<ServiceResponseHttpModel> {
     //Pagination & Filter by search
-    
+
     if (params.limit > 0 && params.page >= 0) {
       return await this.paginateAndFilter(params);
     }
@@ -54,7 +60,9 @@ export class PortafolioService {
     });
 
     if (!portafolio) {
-      throw new NotFoundException(`El portafolio con id:  ${id} no se encontro`);
+      throw new NotFoundException(
+        `El portafolio con id:  ${id} no se encontro`,
+      );
     }
     return { data: portafolio };
   }
@@ -67,9 +75,9 @@ export class PortafolioService {
     if (!portafolio) {
       throw new NotFoundException(`La catalogo con id:  ${id} no se encontro`);
     }
-     portafolio.fkCatalogo = await this.catalogoService.findOne(
-       payload.fkCatalogo.id,
-     );
+    portafolio.fkCatalogo = await this.catalogoService.findOne(
+      payload.fkCatalogo.id,
+    );
     this.portafolioRepository.merge(portafolio, payload);
     const portafolioUpdated = await this.portafolioRepository.save(portafolio);
     return { data: portafolioUpdated };
@@ -81,7 +89,9 @@ export class PortafolioService {
     const institutionDeleted = await this.portafolioRepository.softDelete(id);
     return { data: institutionDeleted };
   }
-  async removeAll(payload: PortafolioEntity[]): Promise<ServiceResponseHttpModel> {
+  async removeAll(
+    payload: PortafolioEntity[],
+  ): Promise<ServiceResponseHttpModel> {
     const institutionsDeleted = await this.portafolioRepository.softRemove(
       payload,
     );

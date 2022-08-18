@@ -10,4 +10,3 @@ export * from './tutor_academico.entity';
 export * from './documento.entity';
 export * from './detalle-portafolio.entity';
 export * from './rol.entity';
-

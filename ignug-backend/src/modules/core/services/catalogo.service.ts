@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   CreateCatalogoDto,
   FilterCatalogoDto,
@@ -15,7 +16,6 @@ export class CatalogoService {
   constructor(
     @Inject(RepositoryEnum.CATALOGO_REPOSITORY)
     private catalogoRepository: Repository<CatalogoEntity>,
-   
   ) {}
 
   async create(payload: CreateCatalogoDto): Promise<ServiceResponseHttpModel> {
@@ -75,7 +75,9 @@ export class CatalogoService {
     const institutionDeleted = await this.catalogoRepository.softDelete(id);
     return { data: institutionDeleted };
   }
-  async removeAll(payload: CatalogoEntity[]): Promise<ServiceResponseHttpModel> {
+  async removeAll(
+    payload: CatalogoEntity[],
+  ): Promise<ServiceResponseHttpModel> {
     const institutionsDeleted = await this.catalogoRepository.softRemove(
       payload,
     );

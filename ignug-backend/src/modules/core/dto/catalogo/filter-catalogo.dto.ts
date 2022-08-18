@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { IsOptional, MinLength } from 'class-validator';
 import { PaginationDto } from '../pagination/pagination.dto';
 

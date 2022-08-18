@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import {  DocumentoEntity} from '@core/entities';
-import { IsBoolean, IsNotEmpty, MaxLength} from 'class-validator';
+import { DocumentoEntity } from '@core/entities';
+import { IsBoolean, IsNotEmpty, MaxLength } from 'class-validator';
 
 export class CreateDetallePortafolioDto {
   @IsBoolean({

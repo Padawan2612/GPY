@@ -1,5 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
-import { UpdateTutorAcademicoDto, CreateTutorAcademicoDto, FilterTutorAcademicoDto } from '@core/dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
+import {
+  UpdateTutorAcademicoDto,
+  CreateTutorAcademicoDto,
+  FilterTutorAcademicoDto,
+} from '@core/dto';
 import { TutorAcademicoEntity } from '../entities/tutor_academico.entity';
 import { TutorAcademicoService } from '../services/tutor_academico.service';
 
@@ -13,7 +26,7 @@ export class TutorAcademicoController {
   }
 
   @Get()
-  async findAll(@Query() params:FilterTutorAcademicoDto) {
+  async findAll(@Query() params: FilterTutorAcademicoDto) {
     return await this.TutorAcademicoService.findAll(params);
   }
 
@@ -27,7 +40,10 @@ export class TutorAcademicoController {
     @Param('id') id: string,
     @Body() updateTutorAcademicoDto: UpdateTutorAcademicoDto,
   ) {
-    return await this.TutorAcademicoService.update(+id, updateTutorAcademicoDto);
+    return await this.TutorAcademicoService.update(
+      +id,
+      updateTutorAcademicoDto,
+    );
   }
 
   @Delete(':id')

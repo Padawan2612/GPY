@@ -7,13 +7,11 @@ export class DetallePortafolioEntity {
   @PrimaryGeneratedColumn({})
   id: number;
 
-  @Column({name: 'estado del portafolio'})
-  estado: boolean;  
+  @Column({ name: 'estado del portafolio' })
+  estado: boolean;
 
-  @Column({name: 'Observaciones_portafolio'})
+  @Column({ name: 'Observaciones_portafolio' })
   observaciones: string;
-
-  
 
   @OneToMany(() => DocumentoEntity, (documento) => documento.detalle_portafolio)
   documento: DocumentoEntity[];

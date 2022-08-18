@@ -85,39 +85,40 @@ export class DocumentoService {
     return { data: documento };
   }
 
+  async update(
+    id: number,
+    payload: UpdateDocumentoDto,
+  ): Promise<ServiceResponseHttpModel> {
+    const documento = await this.documentoRepository.findOneBy({
+      id,
+    });
 
-
-  async update(id: number, payload: UpdateDocumentoDto,
-    ): Promise<ServiceResponseHttpModel> {
-      const documento= await this.documentoRepository.findOneBy({
-        id
-      });
-  
-      if (!documento) {
-        throw new NotFoundException(`el detalle documento con el id: ${id} no se encontro`)
-      }
-  
-      this.documentoRepository.merge(documento, payload);
-      const documentoUpdated = await this.documentoRepository.save(documento);
-  
-      return { data: documentoUpdated}
+    if (!documento) {
+      throw new NotFoundException(
+        `el detalle documento con el id: ${id} no se encontro`,
+      );
     }
 
-    async remove(id: number):
-  Promise<ServiceResponseHttpModel> {
-    const documento = await this.documentoRepository.findOneBy({id});
+    this.documentoRepository.merge(documento, payload);
+    const documentoUpdated = await this.documentoRepository.save(documento);
+
+    return { data: documentoUpdated };
+  }
+
+  async remove(id: number): Promise<ServiceResponseHttpModel> {
+    const documento = await this.documentoRepository.findOneBy({ id });
 
     if (!documento) throw new NotFoundException(' documento no encontrado');
 
     const documentoDeleted = await this.documentoRepository.softDelete(id);
 
-    return { data: documentoDeleted};
+    return { data: documentoDeleted };
   }
 
-  async removeAll(payload: DocumentoEntity[]):Promise<ServiceResponseHttpModel> {
-    const documentoDeleted = await this.documentoRepository.softRemove(
-      payload,
-    );
-    return { data: documentoDeleted}
+  async removeAll(
+    payload: DocumentoEntity[],
+  ): Promise<ServiceResponseHttpModel> {
+    const documentoDeleted = await this.documentoRepository.softRemove(payload);
+    return { data: documentoDeleted };
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export interface ResponseHttpModel {
   data: object | boolean;
   message: string | string[];

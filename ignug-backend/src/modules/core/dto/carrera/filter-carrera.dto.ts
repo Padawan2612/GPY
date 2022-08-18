@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsOptional} from 'class-validator';
+import { IsOptional } from 'class-validator';
 import { PaginationDto } from '../pagination/pagination.dto';
 
 export class FilterCarreraDto extends PaginationDto {
@@ -7,5 +7,5 @@ export class FilterCarreraDto extends PaginationDto {
   nombreCarrera: string;
 
   @IsOptional()
-  descripcion: string; 
+  descripcion: string;
 }

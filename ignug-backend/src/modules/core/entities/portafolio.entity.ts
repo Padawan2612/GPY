@@ -12,11 +12,9 @@ export class PortafolioEntity {
   @Column()
   estado: boolean;
 
-  @ManyToOne(()=> CatalogoEntity, (catalogo)=>catalogo.fkPortafolio)
-
+  @ManyToOne(() => CatalogoEntity, (catalogo) => catalogo.fkPortafolio)
   fkCatalogo: CatalogoEntity;
 
   @Column()
   fkDistributivoEstudiante: number;
-
 }

@@ -16,22 +16,22 @@ import { CarreraService } from '@core/services';
 export class PersonaService {
   constructor(
     @Inject(RepositoryEnum.PERSONA_REPOSITORY)
-    private personaRepository: Repository<PersonaEntity>, 
-    private carreraService: CarreraService
+    private personaRepository: Repository<PersonaEntity>,
+    private carreraService: CarreraService,
   ) {}
 
-  async create(
-    payload: CreatePersonaDto,
-  ): Promise<ServiceResponseHttpModel> {
+  async create(payload: CreatePersonaDto): Promise<ServiceResponseHttpModel> {
     const personaNueva = await this.personaRepository.create(payload);
-    personaNueva.carrera = await this.carreraService.findOne(payload.carrera.id);
+    personaNueva.carrera = await this.carreraService.findOne(
+      payload.carrera.id,
+    );
     const personaCreada = await this.personaRepository.save(personaNueva);
     return { data: personaCreada };
   }
 
   async findAll(params?: FilterPersonaDto): Promise<ServiceResponseHttpModel> {
     //Pagination & Filter by search
-    
+
     if (params.limit > 0 && params.page >= 0) {
       return await this.paginateAndFilter(params);
     }
@@ -68,9 +68,7 @@ export class PersonaService {
     if (!persona) {
       throw new NotFoundException(`La carrera con id:  ${id} no se encontro`);
     }
-     persona.carrera = await this.carreraService.findOne(
-       payload.carrera.id,
-     );
+    persona.carrera = await this.carreraService.findOne(payload.carrera.id);
     this.personaRepository.merge(persona, payload);
     const personaUpdated = await this.personaRepository.save(persona);
     return { data: personaUpdated };

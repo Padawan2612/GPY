@@ -3,7 +3,7 @@ import { IsBoolean, IsNotEmpty, Min, MinLength } from 'class-validator';
 import { TutorAcademicoEntity } from '../../entities/tutor_academico.entity';
 
 export class CreateTutorAcademicoDto {
-@Min(1, { message: 'El campo cedula debe tener diez caracteres' })
+  @Min(1, { message: 'El campo cedula debe tener diez caracteres' })
   id: number;
 
   @MinLength(10, {
@@ -18,9 +18,7 @@ export class CreateTutorAcademicoDto {
     message: 'El campo direccion debe tener minimo doce caracteres',
   })
   direccion: string;
-  
 
   @IsNotEmpty({ message: 'Debe ser objeto del campo carrera' })
   persona: TutorAcademicoEntity;
 }
-

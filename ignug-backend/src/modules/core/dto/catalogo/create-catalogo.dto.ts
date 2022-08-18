@@ -1,6 +1,6 @@
+/* eslint-disable prettier/prettier */
 import { PortafolioEntity } from '@core/entities';
 import { IsNotEmpty, MinLength, Min } from 'class-validator';
-
 
 export class CreateCatalogoDto {
   @Min(1, {

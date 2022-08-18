@@ -1,5 +1,12 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { CarreraEntity } from './carrera.entity';
 import { RolEntity } from './rol.entity';
 import { TutorAcademicoEntity } from './tutor_academico.entity';
@@ -37,6 +44,5 @@ export class PersonaEntity {
   tutor: TutorAcademicoEntity;
 
   @ManyToMany(() => RolEntity, (rol) => rol.persona)
-  @JoinColumn({ name: 'rol_id' })
   rol: RolEntity[];
 }

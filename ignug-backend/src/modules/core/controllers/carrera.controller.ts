@@ -1,5 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { CreateCarreraDto, FilterCarreraDto, UpdateCarreraDto } from '@core/dto';
+import {
+  CreateCarreraDto,
+  FilterCarreraDto,
+  UpdateCarreraDto,
+} from '@core/dto';
 import { CarreraService } from '@core/services';
 import {
   Controller,

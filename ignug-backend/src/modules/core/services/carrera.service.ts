@@ -16,7 +16,6 @@ export class CarreraService {
   constructor(
     @Inject(RepositoryEnum.CARRERA_REPOSITORY)
     private carreraRepository: Repository<CarreraEntity>,
-   
   ) {}
 
   async create(payload: CreateCarreraDto): Promise<ServiceResponseHttpModel> {
@@ -70,7 +69,6 @@ export class CarreraService {
     return { data: careerUpdated };
   }
 
-  
   async remove(id: number): Promise<ServiceResponseHttpModel> {
     const institution = await this.carreraRepository.findOneBy({ id });
     if (!institution) throw new NotFoundException('Institution not found');

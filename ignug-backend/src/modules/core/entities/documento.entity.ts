@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { DetallePortafolioEntity} from './detalle-portafolio.entity'
+import { DetallePortafolioEntity } from './detalle-portafolio.entity';
 
 @Entity({ name: 'documento' })
 export class DocumentoEntity {
@@ -10,12 +10,15 @@ export class DocumentoEntity {
   @Column({ name: 'nombre_documento' })
   nombreDocumento: string;
 
-  @Column({name: 'numero_plantilla'})
+  @Column({ name: 'numero_plantilla' })
   plantilla: number;
 
   @Column()
-  estado: boolean;  
+  estado: boolean;
 
-  @ManyToOne(() => DetallePortafolioEntity, (detalle_portafolio) => detalle_portafolio.documento)
+  @ManyToOne(
+    () => DetallePortafolioEntity,
+    (detalle_portafolio) => detalle_portafolio.documento,
+  )
   detalle_portafolio: DetallePortafolioEntity;
 }

@@ -1,8 +1,21 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { PersonaService } from '@core/services';
 
-import { UpdatePersonaDto, CreatePersonaDto, FilterPersonaDto } from '@core/dto';
+import {
+  UpdatePersonaDto,
+  CreatePersonaDto,
+  FilterPersonaDto,
+} from '@core/dto';
 import { PersonaEntity } from '@core/entities';
 
 @Controller('persona')
@@ -15,7 +28,7 @@ export class PersonaController {
   }
 
   @Get()
-  async findAll(@Query() params:FilterPersonaDto) {
+  async findAll(@Query() params: FilterPersonaDto) {
     return await this.personaService.findAll(params);
   }
 

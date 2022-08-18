@@ -13,7 +13,7 @@ import {
 } from 'typeorm';
 import * as Bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
-import { CatalogueEntity,  } from '@core/entities';
+import { CatalogueEntity } from '@core/entities';
 
 @Entity('users', { schema: 'auth' })
 export class UserEntity {
@@ -43,8 +43,6 @@ export class UserEntity {
 
   @Column('simple-array', { comment: '', nullable: true })
   roles: string[];
-
-  
 
   @ManyToOne(() => CatalogueEntity, { nullable: true })
   @JoinColumn({ name: 'blood_type_id' })

@@ -26,8 +26,7 @@ export const coreProviders = [
   },
   {
     provide: RepositoryEnum.ROL_REPOSITORY,
-    useFactory: (dataSource: DataSource) =>
-      dataSource.getRepository(RolEntity),
+    useFactory: (dataSource: DataSource) => dataSource.getRepository(RolEntity),
     inject: [DataSourceEnum.PG_DATA_SOURCE],
   },
 ];

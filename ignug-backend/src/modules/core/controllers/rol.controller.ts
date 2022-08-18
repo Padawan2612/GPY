@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { UpdateRolDto, CreateRolDto, FilterRolDto } from '@core/dto';
 import { RolEntity } from '../entities/rol.entity';
 import { RolService } from '../services/rol.service';
@@ -13,7 +23,7 @@ export class RolController {
   }
 
   @Get()
-  async findAll(@Query() params:FilterRolDto) {
+  async findAll(@Query() params: FilterRolDto) {
     return await this.rolService.findAll(params);
   }
 
@@ -23,10 +33,7 @@ export class RolController {
   }
 
   @Patch(':id')
-  async update(
-    @Param('id') id: string,
-    @Body() updateRolDto: UpdateRolDto,
-  ) {
+  async update(@Param('id') id: string, @Body() updateRolDto: UpdateRolDto) {
     return await this.rolService.update(+id, updateRolDto);
   }
 

@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */
-import { 
-  Controller, 
-  Get, 
-  Post, 
-  Body, 
-  Patch, 
-  Param, 
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
   Delete,
-  Query 
+  Query,
 } from '@nestjs/common';
 import { DocumentoService } from '../services/documento.service';
 import { CreateDocumentoDto } from '../dto/documento/create-documento.dto';
@@ -15,8 +15,7 @@ import { UpdateDocumentoDto } from '../dto/documento/update-documento.dto';
 import { FilterDocumentoDto } from '../dto/documento/filter-documento.dto';
 import { DocumentoEntity } from '../entities/documento.entity';
 
-
-@Controller('documento')
+@Controller('documentos')
 export class DocumentoController {
   constructor(private readonly documentoService: DocumentoService) {}
 
@@ -36,7 +35,10 @@ export class DocumentoController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateDocumentoDto: UpdateDocumentoDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateDocumentoDto: UpdateDocumentoDto,
+  ) {
     return await this.documentoService.update(+id, updateDocumentoDto);
   }
 
@@ -46,8 +48,7 @@ export class DocumentoController {
   }
 
   @Patch('remove-all')
-  async removeAll(@Body() payload:DocumentoEntity[]) {
-    return await this.documentoService.removeAll(payload)
+  async removeAll(@Body() payload: DocumentoEntity[]) {
+    return await this.documentoService.removeAll(payload);
   }
-
 }

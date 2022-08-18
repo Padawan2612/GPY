@@ -29,7 +29,7 @@ export class RolService {
         personas.push(personasDB);
       }
     });
-    rolNueva.persona = personas
+    rolNueva.persona = personas;
     const rolCreada = await this.rolRepository.save(rolNueva);
     return { data: rolCreada };
   }

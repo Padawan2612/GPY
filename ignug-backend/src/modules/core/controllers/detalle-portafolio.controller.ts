@@ -1,5 +1,14 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { DetallePortafolioService } from '../services/detalle-portafolio.service';
 import { CreateDetallePortafolioDto } from '../dto/detalle-portafolio/create-detalle-portafolio.dto';
 import { UpdateDetallePortafolioDto } from '../dto/detalle-portafolio/update-detalle-portafolio.dto';
@@ -8,11 +17,15 @@ import { DetallePortafolioEntity } from '../entities/detalle-portafolio.entity';
 
 @Controller('detalle-portafolio')
 export class DetallePortafolioController {
-  constructor(private readonly detallePortafolioService: DetallePortafolioService) {}
+  constructor(
+    private readonly detallePortafolioService: DetallePortafolioService,
+  ) {}
 
   @Post()
   async create(@Body() createDetallePortafolioDto: CreateDetallePortafolioDto) {
-    return await this.detallePortafolioService.create(createDetallePortafolioDto);
+    return await this.detallePortafolioService.create(
+      createDetallePortafolioDto,
+    );
   }
 
   @Get()
@@ -26,8 +39,14 @@ export class DetallePortafolioController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateDetallePortafolioDto: UpdateDetallePortafolioDto) {
-    return await  this.detallePortafolioService.update(+id, updateDetallePortafolioDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateDetallePortafolioDto: UpdateDetallePortafolioDto,
+  ) {
+    return await this.detallePortafolioService.update(
+      +id,
+      updateDetallePortafolioDto,
+    );
   }
 
   @Delete(':id')
