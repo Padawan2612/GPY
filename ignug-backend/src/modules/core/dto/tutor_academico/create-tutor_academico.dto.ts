@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { IsBoolean, IsNotEmpty, Min, MinLength } from 'class-validator';
 import { TutorAcademicoEntity } from '../../entities/tutor_academico.entity';
 
