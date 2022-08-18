@@ -4,4 +4,4 @@ export * from './cols.service';
 export * from './core.service';
 export * from './message.service';
 export * from './routes.service';
-
+export * from './documento.service';
