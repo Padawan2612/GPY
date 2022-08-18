@@ -13,10 +13,14 @@ import {
 } from '@core/controllers';
 import {
   CarreraService,
+  CatalogoService,
   CataloguesService,
+  DetallePortafolioService,
   DocumentoService,
   PersonaService,
+  PortafolioService,
   RolService,
+  TutorAcademicoService,
 } from '@core/services';
 import { DatabaseModule } from '@database';
 import { coreProviders } from '@core/providers';
@@ -29,6 +33,10 @@ import { coreProviders } from '@core/providers';
     CarreraController,
     PersonaController,
     DocumentoController,
+    CatalogoController,
+    DetallePortafolioController,
+    PortafolioController,
+    RolController,
   ],
 
   providers: [
@@ -38,6 +46,10 @@ import { coreProviders } from '@core/providers';
     PersonaService,
     RolService,
     DocumentoService,
+    CatalogoService,
+    DetallePortafolioService,
+    PortafolioService,
+    RolService,
   ],
   exports: [
     ...coreProviders,
@@ -46,6 +58,10 @@ import { coreProviders } from '@core/providers';
     PersonaService,
     RolService,
     DocumentoService,
+    CatalogoService,
+    DetallePortafolioService,
+    PortafolioService,
+    RolService,
   ],
 })
 export class CoreModule {}
