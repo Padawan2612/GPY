@@ -1,37 +1,42 @@
+/* eslint-disable prettier/prettier */
 import {
   CreateRolDto,
   FilterRolDto,
   PaginationDto,
   UpdateRolDto,
 } from '@core/dto';
-import { RolEntity } from '../entities/rol.entity';
-import { Inject, Injectable, NotFoundException  } from '@nestjs/common';
+import { RolEntity } from '@core/entities';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { RepositoryEnum } from '@shared/enums';
 import { ServiceResponseHttpModel } from '@shared/models';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
-import { PersonaService } from './persona.service';
-
+import { PersonaService } from '@core/services';
 
 @Injectable()
 export class RolService {
   constructor(
     @Inject(RepositoryEnum.ROL_REPOSITORY)
     private rolRepository: Repository<RolEntity>,
-    private personaService: PersonaService
+    private personaService: PersonaService,
   ) {}
 
-  async create(
-    payload: CreateRolDto,
-  ): Promise<ServiceResponseHttpModel> {
+  async create(payload: CreateRolDto): Promise<ServiceResponseHttpModel> {
     const rolNueva = await this.rolRepository.create(payload);
-    rolNueva.persona = await this.personaService.findOne(payload.persona.id);
+    var personas = [];
+    payload.persona.forEach((persona) => {
+      const personasDB = this.personaService.findOne(persona.id);
+      if (personasDB) {
+        personas.push(personasDB);
+      }
+    });
+    rolNueva.persona = personas
     const rolCreada = await this.rolRepository.save(rolNueva);
     return { data: rolCreada };
   }
 
   async findAll(params?: FilterRolDto): Promise<ServiceResponseHttpModel> {
     //Pagination & Filter by search
-    
+
     if (params.limit > 0 && params.page >= 0) {
       return await this.paginateAndFilter(params);
     }
@@ -68,9 +73,14 @@ export class RolService {
     if (!rol) {
       throw new NotFoundException(`La persona con id:  ${id} no se encontro`);
     }
-     rol.persona = await this.personaService.findOne(
-       payload.persona.id,
-     );
+    var personas = [];
+    payload.persona.forEach((persona) => {
+      const personasDB = this.personaService.findOne(persona.id);
+      if (personasDB) {
+        personas.push(personasDB);
+      }
+    });
+    rol.persona = personas;
     this.rolRepository.merge(rol, payload);
     const rolUpdated = await this.rolRepository.save(rol);
     return { data: rolUpdated };
@@ -83,9 +93,7 @@ export class RolService {
     return { data: institutionDeleted };
   }
   async removeAll(payload: RolEntity[]): Promise<ServiceResponseHttpModel> {
-    const institutionsDeleted = await this.rolRepository.softRemove(
-      payload,
-    );
+    const institutionsDeleted = await this.rolRepository.softRemove(payload);
     return { data: institutionsDeleted };
   }
 

@@ -1,4 +1,5 @@
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+/* eslint-disable prettier/prettier */
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { CarreraEntity } from './carrera.entity';
 import { RolEntity } from './rol.entity';
 
@@ -32,5 +33,5 @@ export class PersonaEntity {
   carrera: CarreraEntity;
 
   @ManyToMany(() => RolEntity, (rol) => rol.persona)
-  rol: RolEntity;
+  rol: RolEntity[];
 }

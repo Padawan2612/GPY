@@ -1,18 +1,26 @@
-import { Column, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { PersonaEntity } from './persona.entity';
 
 @Entity({ name: 'rol' })
 export class RolEntity {
-    @PrimaryGeneratedColumn({})
-    id: number;
-  
-    @Column()
-    nombre: string;
-  
-    @Column()
-    estado: boolean;
+  @PrimaryGeneratedColumn({})
+  id: number;
 
-    @ManyToMany(() => PersonaEntity, (persona) => persona.rol)
-    @JoinColumn({name: 'persona_id'})
-    persona: PersonaEntity[]; 
+  @Column()
+  nombre: string;
+
+  @Column()
+  estado: boolean;
+
+  @ManyToMany(() => PersonaEntity, (persona) => persona.rol)
+  @JoinTable({
+    name: 'persona_rol',
+    joinColumn:{
+        name:'rol_id',
+    },
+    inverseJoinColumn:{
+        name:'persona_id',
+    },
+  })
+  persona: PersonaEntity[];
 }

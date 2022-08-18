@@ -1,4 +1,4 @@
-import { IsOptional, MinLength } from 'class-validator';
+import { IsOptional} from 'class-validator';
 
 import { PaginationDto } from '../pagination/pagination.dto';
 

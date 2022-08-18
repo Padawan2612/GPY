@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { PersonaEntity } from '@core/entities';
 import { IsNotEmpty, MinLength } from 'class-validator';
 
